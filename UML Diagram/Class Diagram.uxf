@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>160</y>
+      <w>160</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>LoginView
+--
++flow:FlowPane
++usernameF:TextField
++idF:TextField
+--
++LoginView()
++getScene()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>30</x>
+      <y>30</y>
+      <w>450</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>view
+--
+Each view will output a scene.
+Setting the which scene to be shown will be handled by the controller
+Views create a scene in the constructor
+Views will act as states for the program to step through</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>230</x>
+      <y>160</y>
+      <w>140</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>StudentView
+--
++scene:Scene
+--
++LoginView()
++getScene()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>510</x>
+      <y>30</y>
+      <w>300</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>model
+--
+superclass:account
+	Studentaccount - studentbag
+	Facultyaccount - facutlybag
+	AdminAccount - adminbag
+
+fields
+name
+username
+id
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
