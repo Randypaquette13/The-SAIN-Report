@@ -1,9 +1,7 @@
 package view;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -12,17 +10,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
-import jdk.nashorn.internal.runtime.regexp.joni.Config;
 
 public class LoginView {
-	
-	Scene scene;
 	
 	Image image = new Image("resources/images/SuffolkLogo.png");
 	ImageView iv = new ImageView(image);
@@ -65,11 +59,9 @@ public class LoginView {
 		flow.setVgap(8);
 		
 		flow.getChildren().addAll(title, gp);
-		
-		scene = new Scene(flow);
 	}
 
-	public Scene getScene() {
-		return scene;
+	public Pane getPane() {
+		return flow;
 	}
 }

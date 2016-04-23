@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.1.1">
-  <zoom_level>10</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
-      <y>160</y>
-      <w>160</w>
-      <h>120</h>
+      <x>14</x>
+      <y>98</y>
+      <w>112</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>LoginView
 --
@@ -16,16 +16,16 @@
 +idF:TextField
 --
 +LoginView()
-+getScene()</panel_attributes>
++getPane()Pane</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>30</x>
-      <y>30</y>
-      <w>450</w>
-      <h>100</h>
+      <x>0</x>
+      <y>7</y>
+      <w>315</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>view
 --
@@ -38,26 +38,26 @@ Views will act as states for the program to step through</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>230</x>
-      <y>160</y>
-      <w>140</w>
-      <h>90</h>
+      <x>140</x>
+      <y>98</y>
+      <w>98</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>StudentView
 --
 +scene:Scene
 --
-+LoginView()
-+getScene()</panel_attributes>
++StudentView()
++getPane():Pane</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>510</x>
-      <y>30</y>
-      <w>300</w>
-      <h>200</h>
+      <x>707</x>
+      <y>0</y>
+      <w>210</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>model
 --
@@ -72,5 +72,363 @@ username
 id
 </panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>329</x>
+      <y>175</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>SAINController</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>658</x>
+      <y>378</y>
+      <w>217</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>Student
+--
++name:String
++username:String
++ID:String
++majorID:String
++gpa:double
++permissionLevel:int
++coursesCompleted:ArrayList&lt;Course&gt;
++coursesFailed:ArrayList&lt;Course&gt;
++coursesInProgress:ArrayList&lt;Course&gt;
+--
++getMajor():Major</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>658</x>
+      <y>217</y>
+      <w>168</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>AcccountBag
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>728</x>
+      <y>266</y>
+      <w>42</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1..*
+m2=3
+</panel_attributes>
+    <additional_attributes>20.0;160.0;20.0;50.0;10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>406</x>
+      <y>378</y>
+      <w>175</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Teacher
+--
++name:String
++username:String
++ID:StringS
++permissionLevel:int
++courseTaught:Course
++studentsTaught:ArrayList&lt;Student&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>532</x>
+      <y>119</y>
+      <w>133</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Account
+--
+getName():String
+getUsername():String
+getAccountPermissions():int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>532</x>
+      <y>182</y>
+      <w>84</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>100.0;10.0;100.0;230.0;10.0;230.0;10.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>154</x>
+      <y>378</y>
+      <w>175</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Admin
+--
++name:String
++username:String
++ID:String
++permissionLevel:int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>238</x>
+      <y>266</y>
+      <w>518</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1..*
+m2=3
+</panel_attributes>
+    <additional_attributes>10.0;160.0;10.0;90.0;720.0;90.0;720.0;50.0;710.0;50.0;710.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>273</x>
+      <y>182</y>
+      <w>343</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>470.0;10.0;470.0;230.0;20.0;230.0;20.0;280.0;10.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>595</x>
+      <y>182</y>
+      <w>126</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;230.0;160.0;230.0;160.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>287</x>
+      <y>266</y>
+      <w>469</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1..*
+m2=3
+</panel_attributes>
+    <additional_attributes>270.0;160.0;270.0;90.0;10.0;90.0;650.0;90.0;650.0;50.0;640.0;50.0;640.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>476</x>
+      <y>203</y>
+      <w>98</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>show 3 bags in object diagram</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>945</x>
+      <y>322</y>
+      <w>112</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>MajorBag
+--
++getMajor(String):Major</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>763</x>
+      <y>161</y>
+      <w>126</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>HashMap&lt;String, Account&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>728</x>
+      <y>175</y>
+      <w>133</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>170.0;10.0;170.0;30.0;10.0;30.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>980</x>
+      <y>280</y>
+      <w>21</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>917</x>
+      <y>266</y>
+      <w>126</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>HashMap&lt;String, Major&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>427</y>
+      <w>154</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Major
+--
++title:String
++majorID:String
++majorCourses:Course[]
++engCourses:Course[]
++sciCourses:Course[]
++matCourses:Course[]
++sscCourses:Course[]
++humCourses:Course[]
+--
+getTotalCreditsNeeded():double
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>973</x>
+      <y>378</y>
+      <w>35</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1..*
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>826</x>
+      <y>336</y>
+      <w>133</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>644</y>
+      <w>126</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Course
+--
++courseNumber:String
++courseTitle:String
++credits:double
++grade:String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>574</x>
+      <y>441</y>
+      <w>98</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1..*
+m2=1..*
+</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>819</x>
+      <y>546</y>
+      <w>175</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1..*
+m2=1</panel_attributes>
+    <additional_attributes>10.0;190.0;230.0;190.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>581</y>
+      <w>35</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1..*
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>518</x>
+      <y>483</y>
+      <w>196</w>
+      <h>217</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1..*
+m2=1..*</panel_attributes>
+    <additional_attributes>260.0;280.0;10.0;280.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
