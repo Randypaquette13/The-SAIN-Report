@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.ModelFacade;
 import model.Student;
 import view.LoginView;
 
@@ -17,6 +18,8 @@ public class Main extends javafx.application.Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
+		ModelFacade mf = new ModelFacade();
 		
 		LoginView lv = new LoginView();
 		primaryStage.setScene(new Scene(lv.getPane()));//to be handled by the controller
