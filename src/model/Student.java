@@ -10,12 +10,12 @@ public class Student implements Account{
 	double gpa;
 	static final int permissionLevel = 1;
 	
-	ArrayList<Course> coursesCompleted;
-	ArrayList<Course> coursesFailed;
-	ArrayList<Course> coursesInProgress;
+	Course[] coursesCompleted;
+	Course[] coursesFailed;
+	Course[] coursesInProgress;
 	
 	public Student(String name, String username, String ID, String majorID, double gpa,
-			ArrayList<Course> coursesCompleted, ArrayList<Course> coursesFailed, ArrayList<Course> coursesInProgress) {
+			Course[] coursesCompleted, Course[] coursesFailed, Course[] coursesInProgress) {
 		this.name = name;
 		this.username = username;
 		this.ID = ID;
@@ -45,6 +45,10 @@ public class Student implements Account{
 	public void setMajorID(String majorID) {
 		this.majorID = majorID;
 	}
+	
+	public Major getMajor() {
+		return MajorBag.bag.get(majorID);
+	}
 
 	public double getGpa() {
 		return gpa;
@@ -58,15 +62,15 @@ public class Student implements Account{
 		return permissionLevel;
 	}
 
-	public ArrayList<Course> getCoursesCompleted() {
+	public Course[] getCoursesCompleted() {
 		return coursesCompleted;
 	}
 
-	public ArrayList<Course> getCoursesFailed() {
+	public Course[] getCoursesFailed() {
 		return coursesFailed;
 	}
 
-	public ArrayList<Course> getCoursesInProgress() {
+	public Course[] getCoursesInProgress() {
 		return coursesInProgress;
 	}
 
