@@ -14,16 +14,16 @@ public class Student implements Account{
 	Course[] coursesFailed;
 	Course[] coursesInProgress;
 	
-	public Student(String name, String username, String ID, String majorID, double gpa,
+	public Student(String name, String username, String ID, String majorID,
 			Course[] coursesCompleted, Course[] coursesFailed, Course[] coursesInProgress) {
 		this.name = name;
 		this.username = username;
 		this.ID = ID;
 		this.majorID = majorID;
-		this.gpa = gpa;
 		this.coursesCompleted = coursesCompleted;
 		this.coursesFailed = coursesFailed;
 		this.coursesInProgress = coursesInProgress;
+		calculateGPA();
 	}
 
 	public String getName() {
@@ -54,10 +54,6 @@ public class Student implements Account{
 		return gpa;
 	}
 
-	public void setGpa(double gpa) {
-		this.gpa = gpa;
-	}
-
 	public int getPermissionLevel() {
 		return permissionLevel;
 	}
@@ -72,6 +68,19 @@ public class Student implements Account{
 
 	public Course[] getCoursesInProgress() {
 		return coursesInProgress;
+	}
+	
+	public void calculateGPA(){
+		double totalScore = 0;
+		
+		for(int i = 0; i < coursesCompleted.length; i++){
+			totalScore += coursesCompleted[i].getGrade();
+		}
+		for(int i = 0; i < coursesFailed.length; i++){
+			totalScore += coursesFailed[i].getGrade();
+		}
+		
+		gpa = totalScore / (coursesCompleted.length + coursesFailed.length);
 	}
 
 }

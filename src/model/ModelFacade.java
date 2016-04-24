@@ -28,18 +28,19 @@ public class ModelFacade {
 		Major m1 = new Major("Computer Science", "m00001", new Course[]{c1, c8}, new Course[]{c3}, new Course[]{c11}, new Course[]{c5, c12}, new Course[]{c6}, new Course[]{c7});
 		Major m2 = new Major("Information Technology", "m00002", new Course[]{c2, c9}, new Course[]{c10}, new Course[]{c4}, new Course[]{c5, c12}, new Course[]{c13}, new Course[]{c7, c14});
 		
-		Student s1  = new Student("Jools Thompson", "jThompson1", "s00001", "m00001", 2.7, new Course[]{c1, c3}, new Course[]{c8}, new Course[]{c8});//username is first initial + lasname + 1
-		Student s2  = new Student("Stevie Brant", "sBrant1", "s00002", "m00001", 4.0, new Course[]{c1, c3, c10}, new Course[]{c12}, new Course[]{c4});
-		Student s3  = new Student("Léonide Foster", "lFoster1", "s00003", "m00001", 3.8, new Course[]{c2, c9}, new Course[]{}, new Course[]{c11, c12, c1});
-		Student s4  = new Student("Hilary Sams", "hSams1", "s00004", "m00001", 3.5, new Course[]{c7, c14}, new Course[]{}, new Course[]{c3, c12, c1});
-		Student s5  = new Student("Dee Shakesheave", "dShakesheave1", "s00005", "m00001", 3.4, new Course[]{c6}, new Course[]{c10}, new Course[]{c13});
-		Student s6  = new Student("Ashton Vincent", "aVincent1", "s00006", "m00001", 3.8, new Course[]{c1}, new Course[]{c11}, new Course[]{c7, c10});
-		Student s7  = new Student("Ash Blackburn", "aBlackburn1", "s00007", "m00002", 2.3, new Course[]{c5, c7}, new Course[]{c3}, new Course[]{c2});
-		Student s8  = new Student("Maria Lennon", "mLennon1", "s00008", "m00002", 4.0, new Course[]{c2, c4}, new Course[]{c1}, new Course[]{c6, c13});
-		Student s9  = new Student("Dale Ferrero", "dFerrero1", "s00009", "m00002", 3.7, new Course[]{c2, c3}, new Course[]{c5}, new Course[]{c8});
-		Student s10 = new Student("Celeste O'Shea", "cO'Shea1", "s00010", "m00002", 2.9, new Course[]{c2, c6}, new Course[]{}, new Course[]{c14, c11});
-		Student s11 = new Student("Esme Caiazzo", "eCaiazzo1", "s00011", "m00002", 3.1, new Course[]{c2, c7}, new Course[]{}, new Course[]{c9, c1});
-		Student s12 = new Student("Tracey Baldinotti", "tBaldinotti", "s00012", "m00002", 3.2, new Course[]{}, new Course[]{}, new Course[]{c1, c2, c5});
+		//username is first initial + lasname + 1
+		Student s1  = new Student("Jools Thompson", "jThompson1", "s00001", "m00001",     new Course[]{c1.copy(3.6), c3.copy(3.2)},  new Course[]{c8.copy(.2)},  new Course[]{c8});
+		Student s2  = new Student("Stevie Brant", "sBrant1", "s00002", "m00001",          new Course[]{c1.copy(3.4), c3.copy(2.0)},  new Course[]{c12.copy(.3)}, new Course[]{c4});
+		Student s3  = new Student("Léonide Foster", "lFoster1", "s00003", "m00001",       new Course[]{c2.copy(2.0), c9.copy(3.0)},  new Course[]{},             new Course[]{c11, c12, c1});
+		Student s4  = new Student("Hilary Sams", "hSams1", "s00004", "m00001",            new Course[]{c7.copy(4.0), c14.copy(3.4)}, new Course[]{},             new Course[]{c3, c12, c1});
+		Student s5  = new Student("Dee Shakesheave", "dShakesheave1", "s00005", "m00001", new Course[]{c6.copy(4.0)},                new Course[]{c10.copy(.3)}, new Course[]{c13});
+		Student s6  = new Student("Ashton Vincent", "aVincent1", "s00006", "m00001",      new Course[]{c1.copy(3.3)},                new Course[]{c11.copy(.3)}, new Course[]{c7, c10});
+		Student s7  = new Student("Ash Blackburn", "aBlackburn1", "s00007", "m00002",     new Course[]{c5.copy(3.5), c7.copy(3.2)},  new Course[]{c3.copy(.3)},  new Course[]{c2});
+		Student s8  = new Student("Maria Lennon", "mLennon1", "s00008", "m00002",         new Course[]{c2.copy(3.0), c4.copy(3.6)},  new Course[]{c1.copy(.3)},  new Course[]{c6, c13});
+		Student s9  = new Student("Dale Ferrero", "dFerrero1", "s00009", "m00002",        new Course[]{c2.copy(2.0), c3.copy(3.7)},  new Course[]{c5.copy(.3)},  new Course[]{c8});
+		Student s10 = new Student("Celeste O'Shea", "cO'Shea1", "s00010", "m00002",       new Course[]{c2.copy(3.0), c6.copy(3.9)},  new Course[]{},             new Course[]{c14, c11});
+		Student s11 = new Student("Esme Caiazzo", "eCaiazzo1", "s00011", "m00002",        new Course[]{c2.copy(3.0), c7.copy(4.0)},  new Course[]{},             new Course[]{c9, c1});
+		Student s12 = new Student("Tracey Baldinotti", "tBaldinotti", "s00012", "m00002", new Course[]{},                            new Course[]{},             new Course[]{c1, c2, c5});
 		
 		Teacher t1  = new Teacher("Donna Nelson", "dNelson2", "t00001", c1, new Student[]{s3, s4, s11, s12});
 		Teacher t2  = new Teacher("Dennis Lewis", "dLewis2", "t00002", c2, new Student[]{s7, s12});

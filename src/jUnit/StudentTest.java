@@ -4,11 +4,13 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import model.Course;
 import model.Student;
 
 public class StudentTest {
 
-	Student s1 = new Student("name", "username", "ID", "majorID", 0, null, null, null);
+	Course c1 = new Course("c00001", "Intro to Psychology", 2);
+	Student s1 = new Student("name", "username", "ID", "majorID",new Course[]{}, new Course[]{c1.copy(0)}, new Course[]{});
 	
 	@Test
 	public void testGetName() {

@@ -4,19 +4,25 @@ public class Course {
 	String courseNumber;
 	String courseTitle;
 	double credits;
-	String grade;
+	double grade;
 	
+	public Course(String courseNumber, String courseTitle, double credits, double grade) {
+		this.courseNumber = courseNumber;
+		this.courseTitle = courseTitle;
+		this.credits = credits;
+		this.grade = grade;
+	}
 	public Course(String courseNumber, String courseTitle, double credits) {
 		this.courseNumber = courseNumber;
 		this.courseTitle = courseTitle;
 		this.credits = credits;
 	}
 
-	public String getGrade() {
+	public double getGrade() {
 		return grade;
 	}
 
-	public void setGrade(String grade) {
+	public void setGrade(double grade) {
 		this.grade = grade;
 	}
 
@@ -30,6 +36,11 @@ public class Course {
 
 	public double getCredits() {
 		return credits;
+	}
+	
+	public Course copy(double grade){//courses are copied when they are assigned to a student. Each student will recieve a grade
+		Course c2 = new Course(this.courseNumber, this.courseTitle, this.credits, grade);
+		return c2;
 	}
 	
 	
