@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ModelFacade {
-	AccountBag studentBag;
-	AccountBag TeacherBag;
-	AccountBag AdminBag;
+	AccountBag studentBag = new AccountBag();
+	AccountBag TeacherBag = new AccountBag();
+	AccountBag AdminBag   = new AccountBag();
 	
 	public ModelFacade() {
 		Course c1  = new Course("c00001", "Intro to Computing", 3);//course# starts with a c and has 5 digits

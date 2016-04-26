@@ -16,7 +16,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class LoginView {
+public class LoginView implements View{
+	//recomended size
+	//primaryStage.setHeight(340);
+	//primaryStage.setWidth(654);
 	
 	Image image = new Image("resources/images/SuffolkLogo.png");
 	ImageView iv = new ImageView(image);
