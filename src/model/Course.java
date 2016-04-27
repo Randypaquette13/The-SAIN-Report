@@ -42,6 +42,15 @@ public class Course {
 		Course c2 = new Course(this.courseNumber, this.courseTitle, this.credits, grade);
 		return c2;
 	}
+	@Override
+	public String toString(){
+		if(grade != 0){
+			return "\n" + courseTitle + " Credits: " + credits + " Grade: " + grade;
+		}else {
+			return "\n" + courseTitle + " Credits: " + credits;
+		}
+		
+	}
 	
 	
 	

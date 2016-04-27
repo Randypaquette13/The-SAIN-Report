@@ -2,7 +2,7 @@ package model;
 
 public class Major {
 	String title;
-	String MajorID;
+	String majorID;
 	
 	Course[] majorCourses;
 	Course[] engCourses;
@@ -14,7 +14,7 @@ public class Major {
 	public Major(String title, String majorID, Course[] majorCourses, Course[] engCourses, Course[] sciCourses,
 			Course[] matCourses, Course[] sscCourses, Course[] humCourses) {
 		this.title = title;
-		MajorID = majorID;
+		this.majorID = majorID;
 		this.majorCourses = majorCourses;
 		this.engCourses = engCourses;
 		this.sciCourses = sciCourses;
@@ -28,7 +28,7 @@ public class Major {
 	}
 
 	public String getMajorID() {
-		return MajorID;
+		return majorID;
 	}
 
 	public Course[] getMajorCourses() {

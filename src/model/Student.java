@@ -8,7 +8,7 @@ public class Student implements Account{
 	String ID;
 	String majorID;
 	double gpa;
-	static final int permissionLevel = 1;
+	static final int permissionLevel = Vars.STUDENT_PERMISSION_LEVEL;
 	
 	Course[] coursesCompleted;
 	Course[] coursesFailed;

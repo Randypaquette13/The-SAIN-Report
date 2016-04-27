@@ -4,7 +4,7 @@ public class Admin implements Account{
 	String name;
 	String username;
 	String ID;
-	static final int permissionLevel = 3;
+	static final int permissionLevel = Vars.ADMIN_PERMISSION_LEVEL;
 	
 	public Admin(String name, String username, String ID) {
 		this.name = name;

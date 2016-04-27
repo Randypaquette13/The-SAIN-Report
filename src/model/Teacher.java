@@ -6,7 +6,7 @@ public class Teacher implements Account{
 	String name;
 	String username;
 	String ID;
-	static final int permissionLevel = 2;
+	static final int permissionLevel = Vars.TEACHER_PERMISSION_LEVEL;
 	
 	Course courseTaught;
 	Student[] studentsTaught;

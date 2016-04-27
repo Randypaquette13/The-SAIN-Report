@@ -2,9 +2,12 @@ package core;
 
 import java.util.HashMap;
 
+import controller.ControllerFacade;
+import controller.SortCoursesTaken;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Account;
 import model.Course;
 import model.ModelFacade;
 import model.Student;
@@ -23,19 +26,8 @@ public class Main extends javafx.application.Application {
 		
 		ModelFacade mf = new ModelFacade();
 		
-//		LoginView lv = new LoginView();
+		ControllerFacade cf = new ControllerFacade(primaryStage, mf);
 		
-		Course c1 = new Course("c00001", "Intro to Psychology", 2);
-		Student s1 = new Student("name", "username", "ID", "m00001",new Course[]{}, new Course[]{c1.copy(0)}, new Course[]{});
-		StudentView sv = new StudentView(s1.getName(), s1.getID(), s1.getMajor().getTitle(), String.valueOf(s1.getGpa()));
-				
-				
-		primaryStage.setScene(new Scene(sv.getPane()));//to be handled by the controller
-		primaryStage.setHeight(1000);
-		primaryStage.setWidth(1000);
-		
-		primaryStage.setTitle("The SAIN Report");
-		primaryStage.show();
 		
 	}
 

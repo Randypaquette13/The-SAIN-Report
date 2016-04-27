@@ -17,7 +17,7 @@ public class ModelFacade {
 		Course c5  = new Course("c00005", "Calculus I", 3);
 		Course c6  = new Course("c00006", "Intro to Philosophy", 2);
 		Course c7  = new Course("c00007", "Spanish I", 1.5);
-		Course c8  = new Course("c00008", "Principles of Computing Using Java", 4);
+		Course c8  = new Course("c00008", "PoC Using Java", 4);
 		Course c9  = new Course("c00009", "Network Topologies", 3);
 		Course c10 = new Course("c00010", "Play Writing", 3);
 		Course c11 = new Course("c00011", "Chemistry Lab", 1.5);
