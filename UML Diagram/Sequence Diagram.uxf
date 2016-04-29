@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>360</x>
+      <y>110</y>
+      <w>950</w>
+      <h>730</h>
+    </coordinates>
+    <panel_attributes>Sain Report User Authentication
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>530</x>
+      <y>160</y>
+      <w>170</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>_StudentBag:AccountBag_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>720</x>
+      <y>160</y>
+      <w>170</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>_TeacherBag:AccountBag_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>910</x>
+      <y>160</y>
+      <w>170</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>_AdminBag:AccountBag_</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

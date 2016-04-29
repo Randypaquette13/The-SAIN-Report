@@ -1,6 +1,8 @@
 package model;
 
-public interface Account {
+import java.io.Serializable;
+
+public interface Account extends Serializable{
 	String getName();
 	String getUsername();
 	String getID();

@@ -54,6 +54,11 @@ public class Major {
 	public Course[] getHumCourses() {
 		return humCourses;
 	}
+
+	@Override
+	public String toString() {
+		return title;
+	}
 	
 	
 

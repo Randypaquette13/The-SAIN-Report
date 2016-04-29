@@ -3,7 +3,7 @@ package controller;
 import model.Course;
 import model.Student;
 
-public class SortCoursesTaken {
+public class SortStudentsCourses {
 	
 	public String coursesTakenInMajor(Student s) {
 		Course[] coursesCompleted = s.getCoursesCompleted();
@@ -193,6 +193,44 @@ public class SortCoursesTaken {
 			}
 		}
 		return output;
+	}
+	
+	public double totalCreditsRequired(Student s) {
+		double total = 0;
+		
+		for(int i = 0; i < s.getMajor().getMajorCourses().length; i++){
+			total += s.getMajor().getMajorCourses()[i].getCredits();
+		}
+		for(int i = 0; i < s.getMajor().getSciCourses().length; i++){
+			total += s.getMajor().getSciCourses()[i].getCredits();
+		}
+		for(int i = 0; i < s.getMajor().getMatCourses().length; i++){
+			total += s.getMajor().getMatCourses()[i].getCredits();
+		}
+		for(int i = 0; i < s.getMajor().getEngCourses().length; i++){
+			total += s.getMajor().getEngCourses()[i].getCredits();
+		}
+		for(int i = 0; i < s.getMajor().getHumCourses().length; i++){
+			total += s.getMajor().getHumCourses()[i].getCredits();
+		}
+		for(int i = 0; i < s.getMajor().getSscCourses().length; i++){
+			total += s.getMajor().getSscCourses()[i].getCredits();
+		}
+		
+		return total;
+	}
+	
+	public double totalCreditsTaken(Student s) {
+		double total = 0;
+		
+		for(int i = 0; i < s.getCoursesCompleted().length; i++){
+			total += s.getCoursesCompleted()[i].getCredits();
+		}
+		return total;
+	}
+	
+	public double totalCreditsNeeded(Student s) {
+		return totalCreditsRequired(s) - totalCreditsTaken(s);
 	}
 
 }

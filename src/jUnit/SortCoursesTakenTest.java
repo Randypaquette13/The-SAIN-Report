@@ -4,14 +4,14 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import controller.SortCoursesTaken;
+import controller.SortStudentsCourses;
 import model.Course;
 import model.ModelFacade;
 import model.Student;
 
 public class SortCoursesTakenTest {
 
-	SortCoursesTaken sct = new SortCoursesTaken();
+	SortStudentsCourses sct = new SortStudentsCourses();
 	
 	ModelFacade mf = new ModelFacade();
 	
@@ -27,7 +27,7 @@ public class SortCoursesTakenTest {
 	
 	@Test
 	public void testCoursesFailed() {		
-		System.out.println(sct.coursesFailed((Student) mf.getStudentBag().bag.get("s00001")));
+		assertTrue(sct.coursesFailed((Student) mf.getStudentBag().bag.get("s00001")).equals("\nPoC Using Java Credits: 4.0 Grade: 0.2"));
 	}
 	
 	@Test
@@ -63,6 +63,16 @@ public class SortCoursesTakenTest {
 	@Test
 	public void testHumanitiesCoursesNeeded() {
 		assertTrue(sct.humanitiesNeeded((Student) mf.getStudentBag().bag.get("s00001")).equals("\nSpanish I Credits: 1.5"));
+	}
+	
+	@Test
+	public void testTotalCreditsRequired() {
+		assertTrue(sct.totalCreditsRequired((Student) mf.getStudentBag().bag.get("s00001")) == 19.0);
+	}
+	
+	@Test
+	public void testTotalCreditsTaken() {
+		assertTrue(sct.totalCreditsTaken((Student) mf.getStudentBag().bag.get("s00001")) == 4.0);
 	}
 
 }

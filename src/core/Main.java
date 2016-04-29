@@ -2,8 +2,8 @@ package core;
 
 import java.util.HashMap;
 
-import controller.ControllerFacade;
-import controller.SortCoursesTaken;
+import controller.LoginButtonHandling;
+import controller.SortStudentsCourses;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -26,7 +26,7 @@ public class Main extends javafx.application.Application {
 		
 		ModelFacade mf = new ModelFacade();
 		
-		ControllerFacade cf = new ControllerFacade(primaryStage, mf);
+		LoginButtonHandling cf = new LoginButtonHandling(primaryStage, mf);
 		
 		
 	}

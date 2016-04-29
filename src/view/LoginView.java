@@ -18,8 +18,10 @@ import javafx.scene.text.Font;
 
 public class LoginView implements View{
 	//recomended size
-	//primaryStage.setHeight(340);
-	//primaryStage.setWidth(654);
+	//stage.setHeight(340);
+	//stage.setWidth(654);
+	
+	ILoginListener loginListener;
 	
 	Image image = new Image("resources/images/SuffolkLogo.png");
 	ImageView iv = new ImageView(image);
@@ -34,7 +36,9 @@ public class LoginView implements View{
 	FlowPane flow;//added to scene, contains gridpane
 	GridPane gp;
 	
-	public LoginView(){
+	public LoginView(ILoginListener listener){
+		loginListener = listener;
+		
 		flow = new FlowPane(Orientation.VERTICAL);
 
 		title.setAlignment(Pos.CENTER);
@@ -55,6 +59,13 @@ public class LoginView implements View{
 		gp.add(usernameF, 0, 1);
 		gp.add(idF, 1, 1);
 		gp.add(loginB, 1, 2);
+		
+		loginB.setOnAction(e->{
+			LoginEvent le = new LoginEvent(this, usernameF.getText(), idF.getText());
+			if(loginListener != null){
+				loginListener.getLoginDetails(le);
+			}
+		});
 		
 		flow.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 		flow.setAlignment(Pos.TOP_CENTER);
