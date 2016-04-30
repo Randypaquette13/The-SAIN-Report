@@ -17,9 +17,12 @@ import model.Teacher;
 import view.IGoToWhatIfListener;
 import view.ILoginListener;
 import view.ILogoutListener;
+import view.ISearchListener;
 import view.IWhatIfListener;
 import view.LoginEvent;
 import view.LoginView;
+import view.SearchEvent;
+import view.SearchView;
 import view.StudentView;
 import view.WhatIfEvent;
 import view.WhatIfView;
@@ -44,7 +47,6 @@ public class AuthenticateLogin {
 			studentBag = new ModelFacade().getStudentBag();//using model facade because the first student has no major
 			ObjectInputStream teacherOS = new ObjectInputStream(new FileInputStream(new File("C://Users/Randy/workspace/The Sain Report/src/Database/Faculty.bin")));
 			teacherBag = (AccountBag) teacherOS.readObject();
-			
 			ObjectInputStream adminOS = new ObjectInputStream(new FileInputStream(new File("C://Users/Randy/workspace/The Sain Report/src/Database/Administrators.bin")));
 			adminBag = (AccountBag) adminOS.readObject();
 		}catch(Exception e){
@@ -73,10 +75,22 @@ public class AuthenticateLogin {
 			}
 			
 		}else if(teacherBag.bag.containsKey(ID)){
-			teacherBag.bag.get(ID);//TODO
+			teacherBag.bag.get(ID);//TODO: implement teacherview/adminview/searchview
 			
 		}else if(adminBag.bag.containsKey(ID)){
 			adminBag.bag.get(ID);
+			SearchView sev = new SearchView(new ISearchListener() {
+				
+				@Override
+				public String search(SearchEvent e) {
+					
+					return foundStudentFromAdmin(e.getStudentID());
+				}
+			});
+			stage.setScene(new Scene(sev.getPane()));//to be handled by the controller
+			stage.setHeight(200);
+			stage.setWidth(300);
+			stage.centerOnScreen();
 		}
 		
 	}
@@ -126,6 +140,27 @@ public class AuthenticateLogin {
 		stage.setHeight(900);
 		stage.setWidth(1000);
 		stage.centerOnScreen();
+	}
+	
+	public String foundStudentFromAdmin(String ID){
+		AccountBag studentBag = null;
+		
+		try{
+			ObjectInputStream StudentOS = new ObjectInputStream(new FileInputStream(new File("C://Users/Randy/workspace/The Sain Report/src/Database/Students.bin")));
+			//studentBag = (AccountBag) StudentOS.readObject();
+			studentBag = new ModelFacade().getStudentBag();//using model facade because the first student has no major
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		if(studentBag.bag.containsKey(ID)){//case:Student
+			Student s = (Student) studentBag.bag.get(ID);
+			//change student gradesview
+			return "Student exists";
+		}else {
+			return "Student does not exist";
+		}
 	}
 
 }
