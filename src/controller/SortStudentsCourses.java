@@ -2,6 +2,7 @@ package controller;
 
 import model.Course;
 import model.Student;
+import model.Teacher;
 
 public class SortStudentsCourses {
 	
@@ -231,6 +232,37 @@ public class SortStudentsCourses {
 	
 	public double totalCreditsNeeded(Student s) {
 		return totalCreditsRequired(s) - totalCreditsTaken(s);
+	}
+	
+	public String[] CoursesInProgressStringArray(Student s) {
+		String[] output = new String[s.getCoursesInProgress().length];
+		
+		for(int i = 0; i < s.getCoursesInProgress().length; i++) {
+			output[i] = s.getCoursesInProgress()[i].toString();
+		}
+		return output;
+	}
+	
+	public String[] CourseTeacherHasWithStudent(Student s, Teacher t) {
+		String[] output = new String[1];
+		
+		for(int i = 0; i < s.getCoursesInProgress().length; i++) {
+			if(s.getCoursesInProgress()[i].getCourseNumber().equals(t.getCourseTaught().getCourseNumber())){
+				output[0] = s.getCoursesInProgress()[i].toString();
+			}
+		}
+		return output;
+	}
+	
+	public boolean teacherHasStudent(Student s, Teacher t){
+		
+		for(int i = 0; i < t.getStudentsTaught().length; i++){
+			if(s.getID().equals(t.getStudentsTaught()[i].getID())){
+				return true;
+			}
+		}
+		return false;
+		
 	}
 
 }

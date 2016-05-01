@@ -14,16 +14,19 @@ import model.Admin;
 import model.ModelFacade;
 import model.Student;
 import model.Teacher;
+import view.ChangeStudentsGradesView;
 import view.IGoToWhatIfListener;
 import view.ILoginListener;
 import view.ILogoutListener;
 import view.ISearchListener;
+import view.IUpdateGradesListener;
 import view.IWhatIfListener;
 import view.LoginEvent;
 import view.LoginView;
 import view.SearchEvent;
 import view.SearchView;
 import view.StudentView;
+import view.UpdateGradesEvent;
 import view.WhatIfEvent;
 import view.WhatIfView;
 
@@ -43,8 +46,7 @@ public class AuthenticateLogin {
 		
 		try{
 			ObjectInputStream StudentOS = new ObjectInputStream(new FileInputStream(new File("C://Users/Randy/workspace/The Sain Report/src/Database/Students.bin")));
-			//studentBag = (AccountBag) StudentOS.readObject();
-			studentBag = new ModelFacade().getStudentBag();//using model facade because the first student has no major
+			studentBag = (AccountBag) StudentOS.readObject();
 			ObjectInputStream teacherOS = new ObjectInputStream(new FileInputStream(new File("C://Users/Randy/workspace/The Sain Report/src/Database/Faculty.bin")));
 			teacherBag = (AccountBag) teacherOS.readObject();
 			ObjectInputStream adminOS = new ObjectInputStream(new FileInputStream(new File("C://Users/Randy/workspace/The Sain Report/src/Database/Administrators.bin")));
@@ -68,17 +70,29 @@ public class AuthenticateLogin {
 						setUpStudentView(s);
 					}
 				});
-				stage.setScene(new Scene(wv.getPane()));//to be handled by the controller
+				stage.setScene(new Scene(wv.getPane()));
 				stage.setHeight(300);
 				stage.setWidth(300);
 				stage.centerOnScreen();
 			}
 			
 		}else if(teacherBag.bag.containsKey(ID)){
-			teacherBag.bag.get(ID);//TODO: implement teacherview/adminview/searchview
+			Teacher t = (Teacher) teacherBag.bag.get(ID);
+			SearchView sev = new SearchView(new ISearchListener() {
+				
+				@Override
+				public String search(SearchEvent e) {
+					
+					return foundStudentFromTeacher(e.getStudentID(), t);
+				}
+			});
+			stage.setScene(new Scene(sev.getPane()));
+			stage.setHeight(200);
+			stage.setWidth(300);
+			stage.centerOnScreen();
 			
 		}else if(adminBag.bag.containsKey(ID)){
-			adminBag.bag.get(ID);
+			Admin a = (Admin) adminBag.bag.get(ID);
 			SearchView sev = new SearchView(new ISearchListener() {
 				
 				@Override
@@ -115,6 +129,7 @@ public class AuthenticateLogin {
 				stage.setScene(new Scene(lv.getPane()));
 				stage.setHeight(340);
 				stage.setWidth(654);
+				stage.centerOnScreen();
 			}
 		});
 		sv.setGoToWhatIfListener(new IGoToWhatIfListener() {
@@ -147,19 +162,121 @@ public class AuthenticateLogin {
 		
 		try{
 			ObjectInputStream StudentOS = new ObjectInputStream(new FileInputStream(new File("C://Users/Randy/workspace/The Sain Report/src/Database/Students.bin")));
-			//studentBag = (AccountBag) StudentOS.readObject();
-			studentBag = new ModelFacade().getStudentBag();//using model facade because the first student has no major
+			studentBag = (AccountBag) StudentOS.readObject();
 
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		
-		if(studentBag.bag.containsKey(ID)){//case:Student
+		if(studentBag.bag.containsKey(ID)){
 			Student s = (Student) studentBag.bag.get(ID);
-			//change student gradesview
+			
+			ChangeStudentsGradesView csgv = new ChangeStudentsGradesView(cs.CoursesInProgressStringArray(s), new IUpdateGradesListener() {
+				
+				@Override
+				public String getGrades(UpdateGradesEvent uge) {
+					boolean validEntry = true;
+					
+					for(int i = 0; i < uge.getGrades().length; i++){
+						if(uge.getGrades()[i] == -50){
+							validEntry = false;
+							return "enter valid grades for each field";
+						}
+					}
+					if(validEntry){
+						for(int i = 0; i < s.getCoursesInProgress().length; i++){
+							s.getCoursesInProgress()[i].setGrade(uge.getGrades()[i]);//write this student to binary
+							if(s.getMajorID() != null){
+								setUpStudentView(s);
+							}else{
+								WhatIfView wv = new WhatIfView(new IWhatIfListener() {
+									
+									@Override
+									public void getMajorID(WhatIfEvent wie) {
+										s.setMajorID(wie.getMajorID());
+										setUpStudentView(s);
+									}
+								});
+								stage.setScene(new Scene(wv.getPane()));
+								stage.setHeight(300);
+								stage.setWidth(300);
+								stage.centerOnScreen();
+							}
+						}
+					}
+					return "enter valid grades for each field";
+				}
+			});
+			stage.setScene(new Scene(csgv.getPane()));//to be handled by the controller
+			stage.setHeight(900);
+			stage.setWidth(600);
+			stage.centerOnScreen();
 			return "Student exists";
 		}else {
 			return "Student does not exist";
+		}
+	}
+	
+	public String foundStudentFromTeacher(String ID, Teacher t){
+		AccountBag studentBag = null;
+		
+		try{
+			ObjectInputStream StudentOS = new ObjectInputStream(new FileInputStream(new File("C://Users/Randy/workspace/The Sain Report/src/Database/Students.bin")));
+			studentBag = (AccountBag) StudentOS.readObject();
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		if(cs.teacherHasStudent((Student) studentBag.bag.get(ID), t) && studentBag.bag.containsKey(ID)){//case:Student
+			Student s = (Student) studentBag.bag.get(ID);
+			ChangeStudentsGradesView csgv = new ChangeStudentsGradesView(cs.CourseTeacherHasWithStudent(s, t), new IUpdateGradesListener() {
+				
+				@Override
+				public String getGrades(UpdateGradesEvent uge) {
+					boolean validEntry = true;
+					
+					for(int i = 0; i < uge.getGrades().length; i++){
+						if(uge.getGrades()[i] == -50){
+							validEntry = false;
+							return "enter valid grades for each field";
+						}
+					}
+					if(validEntry){
+						for(int i = 0; i < s.getCoursesInProgress().length; i++){
+
+							if(s.getCoursesInProgress()[i].getCourseNumber().equals(t.getCourseTaught().getCourseNumber())){
+								s.getCoursesInProgress()[i].setGrade(uge.getGrades()[0]);//write this student to binary
+								System.out.println("lmao");
+							}
+							if(s.getMajorID() != null){
+								setUpStudentView(s);
+							}else{
+								WhatIfView wv = new WhatIfView(new IWhatIfListener() {
+									
+									@Override
+									public void getMajorID(WhatIfEvent wie) {
+										s.setMajorID(wie.getMajorID());
+										setUpStudentView(s);
+									}
+								});
+								stage.setScene(new Scene(wv.getPane()));
+								stage.setHeight(300);
+								stage.setWidth(300);
+								stage.centerOnScreen();
+							}
+						}
+					}
+					return "";
+				}
+			});
+			stage.setScene(new Scene(csgv.getPane()));//to be handled by the controller
+			stage.setHeight(900);
+			stage.setWidth(600);
+			stage.centerOnScreen();
+			return "Student exists";
+		}else {
+			return "You do not Teach this student";
 		}
 	}
 
