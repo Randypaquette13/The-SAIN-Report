@@ -3,8 +3,10 @@ package controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -29,7 +31,11 @@ import view.StudentView;
 import view.UpdateGradesEvent;
 import view.WhatIfEvent;
 import view.WhatIfView;
-
+/**
+ * class to handle authentication and the viewing of StudentView
+ * @author Randy Paquette
+ *
+ */
 public class AuthenticateLogin {
 	Stage stage;
 	SortStudentsCourses cs = new SortStudentsCourses();
@@ -38,6 +44,11 @@ public class AuthenticateLogin {
 		this.stage = stage;
 	}
 	
+	/**
+	 * 
+	 * @param username the input username of the student/teacher/admin
+	 * @param ID       the ID
+	 */
 	public void tryLogin(String username, String ID){
 		
 		AccountBag studentBag = null;
@@ -45,11 +56,11 @@ public class AuthenticateLogin {
 		AccountBag adminBag = null;
 		
 		try{
-			ObjectInputStream StudentOS = new ObjectInputStream(new FileInputStream(new File("C://Users/Randy/workspace/The Sain Report/src/Database/Students.bin")));
+			ObjectInputStream StudentOS = new ObjectInputStream(new FileInputStream(new File("Database/Students.bin")));
 			studentBag = (AccountBag) StudentOS.readObject();
-			ObjectInputStream teacherOS = new ObjectInputStream(new FileInputStream(new File("C://Users/Randy/workspace/The Sain Report/src/Database/Faculty.bin")));
+			ObjectInputStream teacherOS = new ObjectInputStream(new FileInputStream(new File("Database/Faculty.bin")));
 			teacherBag = (AccountBag) teacherOS.readObject();
-			ObjectInputStream adminOS = new ObjectInputStream(new FileInputStream(new File("C://Users/Randy/workspace/The Sain Report/src/Database/Administrators.bin")));
+			ObjectInputStream adminOS = new ObjectInputStream(new FileInputStream(new File("Database/Administrators.bin")));
 			adminBag = (AccountBag) adminOS.readObject();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -78,6 +89,7 @@ public class AuthenticateLogin {
 			
 		}else if(teacherBag.bag.containsKey(ID)){
 			Teacher t = (Teacher) teacherBag.bag.get(ID);
+			AccountBag ab = studentBag;
 			SearchView sev = new SearchView(new ISearchListener() {
 				
 				@Override
@@ -108,7 +120,11 @@ public class AuthenticateLogin {
 		}
 		
 	}
-	
+	/**
+	 * helps set up a Student View
+	 * 
+	 * @param s student to generate a sain report for
+	 */
 	public void setUpStudentView(Student s){
 		StudentView sv = new StudentView(s.getName(), ("ID: " + s.getID()), s.getMajor().toString(), String.valueOf("Gpa: " + s.getGpa()), 
 				cs.coursesTakenInMajor(s), cs.coursesTakenNotInMajor(s), cs.coursesFailed(s), cs.CoursesInProgress(s), cs.majorCoursesNeeded(s), 
@@ -157,11 +173,17 @@ public class AuthenticateLogin {
 		stage.centerOnScreen();
 	}
 	
+	/**
+	 * Method to be called in the search event listener
+	 * 
+	 * @param ID students ID
+	 * @return   returns a string only to report an error
+	 */
 	public String foundStudentFromAdmin(String ID){
 		AccountBag studentBag = null;
 		
 		try{
-			ObjectInputStream StudentOS = new ObjectInputStream(new FileInputStream(new File("C://Users/Randy/workspace/The Sain Report/src/Database/Students.bin")));
+			ObjectInputStream StudentOS = new ObjectInputStream(new FileInputStream(new File("Database/Students.bin")));
 			studentBag = (AccountBag) StudentOS.readObject();
 
 		}catch(Exception e){
@@ -170,7 +192,7 @@ public class AuthenticateLogin {
 		
 		if(studentBag.bag.containsKey(ID)){
 			Student s = (Student) studentBag.bag.get(ID);
-			
+			AccountBag sb = studentBag;
 			ChangeStudentsGradesView csgv = new ChangeStudentsGradesView(cs.CoursesInProgressStringArray(s), new IUpdateGradesListener() {
 				
 				@Override
@@ -186,6 +208,17 @@ public class AuthenticateLogin {
 					if(validEntry){
 						for(int i = 0; i < s.getCoursesInProgress().length; i++){
 							s.getCoursesInProgress()[i].setGrade(uge.getGrades()[i]);//write this student to binary
+							sb.bag.put(ID, s);
+							try {
+								ObjectOutputStream StudentOS = new ObjectOutputStream(new FileOutputStream(new File("Database/Students.bin")));
+								StudentOS.writeObject(sb);
+							} catch (FileNotFoundException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							if(s.getMajorID() != null){
 								setUpStudentView(s);
 							}else{
@@ -217,11 +250,18 @@ public class AuthenticateLogin {
 		}
 	}
 	
+	/**
+	 * Method to be called from the search listener
+	 * 
+	 * @param ID The ID of the Student
+	 * @param t  the teacher who has found the student
+	 * @return   an error message for the view
+	 */
 	public String foundStudentFromTeacher(String ID, Teacher t){
 		AccountBag studentBag = null;
 		
 		try{
-			ObjectInputStream StudentOS = new ObjectInputStream(new FileInputStream(new File("C://Users/Randy/workspace/The Sain Report/src/Database/Students.bin")));
+			ObjectInputStream StudentOS = new ObjectInputStream(new FileInputStream(new File("Database/Students.bin")));
 			studentBag = (AccountBag) StudentOS.readObject();
 
 		}catch(Exception e){
@@ -230,6 +270,7 @@ public class AuthenticateLogin {
 		
 		if(cs.teacherHasStudent((Student) studentBag.bag.get(ID), t) && studentBag.bag.containsKey(ID)){//case:Student
 			Student s = (Student) studentBag.bag.get(ID);
+			AccountBag sb = studentBag;
 			ChangeStudentsGradesView csgv = new ChangeStudentsGradesView(cs.CourseTeacherHasWithStudent(s, t), new IUpdateGradesListener() {
 				
 				@Override
@@ -247,7 +288,18 @@ public class AuthenticateLogin {
 
 							if(s.getCoursesInProgress()[i].getCourseNumber().equals(t.getCourseTaught().getCourseNumber())){
 								s.getCoursesInProgress()[i].setGrade(uge.getGrades()[0]);//write this student to binary
-								System.out.println("lmao");
+								sb.bag.put(ID, s);
+								try {
+									ObjectOutputStream StudentOS = new ObjectOutputStream(new FileOutputStream(new File("Database/Students.bin")));
+									StudentOS.writeObject(sb);
+								} catch (FileNotFoundException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								
 							}
 							if(s.getMajorID() != null){
 								setUpStudentView(s);

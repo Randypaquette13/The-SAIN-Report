@@ -4,7 +4,13 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * A class to set up the model to be written initially to binary.
+ * used for reference to find a login
+ * @author Randy Paquette
+ */
 public class ModelFacade {
+	
 	AccountBag studentBag = new AccountBag();
 	AccountBag TeacherBag = new AccountBag();
 	AccountBag AdminBag   = new AccountBag();

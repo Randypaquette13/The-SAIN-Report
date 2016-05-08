@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * an account with the highest permission level
+ * @author Randy
+ *
+ */
 public class Admin implements Account{
 	String name;
 	String username;

@@ -1,7 +1,11 @@
 package model;
 
 import java.util.ArrayList;
-
+/**
+ * Stores information on the student
+ * @author Randy
+ *
+ */
 public class Teacher implements Account{
 	String name;
 	String username;

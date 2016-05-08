@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * describes a major that a student can have
+ * @author Randy
+ *
+ */
 public class Major {
 	String title;
 	String majorID;

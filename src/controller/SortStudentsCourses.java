@@ -4,8 +4,19 @@ import model.Course;
 import model.Student;
 import model.Teacher;
 
+/**
+ * A helper class to convert a students courses to strings for the view
+ * @author Randy
+ *
+ */
 public class SortStudentsCourses {
 	
+	/**
+	 * Find courses taken in a students major
+	 * 
+	 * @param s the student
+	 * @return  the students courses in String form
+	 */
 	public String coursesTakenInMajor(Student s) {
 		Course[] coursesCompleted = s.getCoursesCompleted();
 		Course[] coursesInMajor = s.getMajor().getMajorCourses();
@@ -22,7 +33,12 @@ public class SortStudentsCourses {
 		}
 		return output;
 	}
-	
+	/**
+	 * Find courses taken not in a students major
+	 * 
+	 * @param s the student
+	 * @return  the students courses in String form
+	 */
 	public String coursesTakenNotInMajor(Student s) {
 		Course[] coursesCompleted = s.getCoursesCompleted();
 		Course[] coursesInMajor = s.getMajor().getMajorCourses();
@@ -44,7 +60,12 @@ public class SortStudentsCourses {
 		}
 		return output;
 	}
-	
+	/**
+	 * Find courses failed
+	 * 
+	 * @param s the student
+	 * @return  the students courses in String form
+	 */
 	public String coursesFailed(Student s) {
 		String output = "";
 		
@@ -53,7 +74,12 @@ public class SortStudentsCourses {
 		}
 		return output;
 	}
-	
+	/**
+	 * Find courses in progress
+	 * 
+	 * @param s the student
+	 * @return  the students courses in String form
+	 */
 	public String CoursesInProgress(Student s) {
 		String output = "";
 		
@@ -62,7 +88,12 @@ public class SortStudentsCourses {
 		}
 		return output;
 	}
-	
+	/**
+	 * Find courses needed in major
+	 * 
+	 * @param s the student
+	 * @return  the students courses in String form
+	 */
 	public String majorCoursesNeeded(Student s) {
 		Course[] coursesCompleted = s.getCoursesCompleted();
 		Course[] coursesInMajor = s.getMajor().getMajorCourses();
@@ -85,7 +116,12 @@ public class SortStudentsCourses {
 		return output;
 		
 	}
-	
+	/**
+	 * Find courses needed for english
+	 * 
+	 * @param s the student
+	 * @return  the students courses in String form
+	 */
 	public String englishCoursesNeeded(Student s) {
 		Course[] coursesCompleted = s.getCoursesCompleted();
 		Course[] englishCoursesInMajor = s.getMajor().getEngCourses();
@@ -107,7 +143,12 @@ public class SortStudentsCourses {
 		}
 		return output;
 	}
-	
+	/**
+	 * Find courses needed for science
+	 * 
+	 * @param s the student
+	 * @return  the students courses in String form
+	 */
 	public String scienceCoursesNeeded(Student s) {
 		Course[] coursesCompleted = s.getCoursesCompleted();
 		Course[] scienceCoursesInMajor = s.getMajor().getSciCourses();
@@ -129,7 +170,12 @@ public class SortStudentsCourses {
 		}
 		return output;
 	}
-	
+	/**
+	 * Find courses needed for math
+	 * 
+	 * @param s the student
+	 * @return  the students courses in String form
+	 */
 	public String mathCoursesNeeded(Student s) {
 		Course[] coursesCompleted = s.getCoursesCompleted();
 		Course[] mathCoursesInMajor = s.getMajor().getMatCourses();
@@ -151,7 +197,12 @@ public class SortStudentsCourses {
 		}
 		return output;
 	}
-	
+	/**
+	 * Find courses needed for social science
+	 * 
+	 * @param s the student
+	 * @return  the students courses in String form
+	 */
 	public String socialScienceCoursesNeeded(Student s) {
 		Course[] coursesCompleted = s.getCoursesCompleted();
 		Course[] socialScienceCoursesInMajor = s.getMajor().getSscCourses();
@@ -173,7 +224,12 @@ public class SortStudentsCourses {
 		}
 		return output;
 	}
-	
+	/**
+	 * Find courses needed for humanities
+	 * 
+	 * @param s the student
+	 * @return  the students courses in String form
+	 */
 	public String humanitiesNeeded(Student s) {
 		Course[] coursesCompleted = s.getCoursesCompleted();
 		Course[] humanitiesCoursesInMajor = s.getMajor().getHumCourses();
@@ -195,7 +251,12 @@ public class SortStudentsCourses {
 		}
 		return output;
 	}
-	
+	/**
+	 * Find the total credits required for a major
+	 * 
+	 * @param s the student
+	 * @return  the number of credits needed
+	 */
 	public double totalCreditsRequired(Student s) {
 		double total = 0;
 		
@@ -220,7 +281,12 @@ public class SortStudentsCourses {
 		
 		return total;
 	}
-	
+	/**
+	 * Find credits earned
+	 * 
+	 * @param s the student
+	 * @return  the amount of credits earned
+	 */
 	public double totalCreditsTaken(Student s) {
 		double total = 0;
 		
@@ -229,7 +295,12 @@ public class SortStudentsCourses {
 		}
 		return total;
 	}
-	
+	/**
+	 * Find credits needed
+	 * 
+	 * @param s the student
+	 * @return  the amount of credits needed
+	 */
 	public double totalCreditsNeeded(Student s) {
 		return totalCreditsRequired(s) - totalCreditsTaken(s);
 	}
@@ -242,7 +313,12 @@ public class SortStudentsCourses {
 		}
 		return output;
 	}
-	
+	/**
+	 * Find courses a teacher teaches with a student
+	 * 
+	 * @param s the student
+	 * @return  the students courses in String array form
+	 */
 	public String[] CourseTeacherHasWithStudent(Student s, Teacher t) {
 		String[] output = new String[1];
 		
@@ -253,7 +329,13 @@ public class SortStudentsCourses {
 		}
 		return output;
 	}
-	
+	/**
+	 * determine if a teacher teaches a student
+	 * 
+	 * @param s the student
+	 * @param t the teacher
+	 * @return  boolean
+	 */
 	public boolean teacherHasStudent(Student s, Teacher t){
 		
 		for(int i = 0; i < t.getStudentsTaught().length; i++){

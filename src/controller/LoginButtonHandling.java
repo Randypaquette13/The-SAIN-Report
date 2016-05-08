@@ -21,7 +21,11 @@ import view.LoginView;
 import view.StudentView;
 import view.WhatIfEvent;
 import view.WhatIfView;
-
+/**
+ * handles the clicking of the login button
+ * @author Randy
+ *
+ */
 public class LoginButtonHandling {
 	
 	public LoginButtonHandling(Stage stage, ModelFacade mf){

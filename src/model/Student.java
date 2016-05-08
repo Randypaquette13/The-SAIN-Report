@@ -1,7 +1,12 @@
 package model;
 
 import java.util.ArrayList;
-
+/**
+ * Stores the information about each student
+ * 
+ * @author Randy
+ *
+ */
 public class Student implements Account{
 	String name;
 	String username;
@@ -69,7 +74,9 @@ public class Student implements Account{
 	public Course[] getCoursesInProgress() {
 		return coursesInProgress;
 	}
-	
+	/**
+	 * Calculates the average gpa
+	 */
 	public void calculateGPA(){
 		double totalScore = 0;
 		

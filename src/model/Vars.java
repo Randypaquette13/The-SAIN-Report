@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * a variables class to keep up with google coding style
+ * @author Randy
+ *
+ */
 public class Vars {
 	
 	public static final int STUDENT_PERMISSION_LEVEL = 1;
